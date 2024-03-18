@@ -3,18 +3,17 @@ package com.crudapplication.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.crudapplication.entity.MyUser;
 
 @RestController
@@ -37,17 +36,23 @@ public class UserController {
 	}
 
 	@GetMapping(value = "/admin")
-	public String admin() {
-		return "redirect:/student";
+	public String admin(Model model) {
+
+		model.addAttribute("message", "Welcome Admin :)");
+		return "admin";
 	}
 
 	@GetMapping(value = "/user")
-	public String user() {
-		return "<h3>Hello User :)</h3>";
+	public String user(Model model) {
+
+		model.addAttribute("message", "Hello User :)");
+		return "user";
 	}
 
 	@GetMapping(value = "/")
-	public String welcome() {
-		return "<h3>Welcome :)</h3>";
+	public String welcome(Model model) {
+
+		model.addAttribute("message", "Welcome :)");
+		return "welcome";
 	}
 }
