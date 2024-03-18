@@ -1,37 +1,53 @@
 package com.crudapplication.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.bind.annotation.RestController;
 
-import com.crudapplication.entity.User;
-import com.crudapplication.service.UserService;
+import com.crudapplication.entity.MyUser;
 
-import lombok.extern.log4j.Log4j2;
-
-@Controller
-@Log4j2
+@RestController
 public class UserController {
-	
+
 	@Autowired
-	private UserService service;
-	
-	@GetMapping("/login")
-	public ModelAndView firstPage() {
-		return new ModelAndView("login");
+	private JdbcUserDetailsManager jdbcUserDetailsManager;
+
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
+
+	@PostMapping(value = "/register-user")
+	public String regiter(@RequestBody MyUser myUser) {
+		List<GrantedAuthority> authorities = new ArrayList<>();
+		authorities.add(new SimpleGrantedAuthority(myUser.getRoles()));
+		String encodededPassword = passwordEncoder.encode(myUser.getPassword());
+		User user = new User(myUser.getUserName(), encodededPassword, authorities);
+		jdbcUserDetailsManager.createUser(user);
+		return "User created :)";
 	}
-	
-	
-	
-	
-	
 
+	@GetMapping(value = "/admin")
+	public String admin() {
+		return "redirect:/student";
+	}
 
+	@GetMapping(value = "/user")
+	public String user() {
+		return "<h3>Hello User :)</h3>";
+	}
+
+	@GetMapping(value = "/")
+	public String welcome() {
+		return "<h3>Welcome :)</h3>";
+	}
 }

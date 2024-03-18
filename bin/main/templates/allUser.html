@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:c="http://java.sun.com/jsp/jstl/core">
+<head>
+    <title>User page</title>
+</head>
+<body>
+    <h1>User page</h1>
+
+    <ul>
+        <li th:each="user : ${user}" th:text="${user}"></li>
+    </ul>
+</body>
+</html>
