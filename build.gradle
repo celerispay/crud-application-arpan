@@ -27,10 +27,6 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc:2.6.8'
 	// https://mvnrepository.com/artifact/org.flywaydb/flyway-core
 implementation 'org.flywaydb:flyway-core:7.1.1'
-
-
-	
-
 implementation 'org.springframework.boot:spring-boot-devtools:2.6.6'
 	
 	runtimeOnly 'mysql:mysql-connector-java'
