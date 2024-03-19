@@ -17,18 +17,18 @@ import com.crudapplication.service.TeacherService;
 @RestController
 @RequestMapping("/teacher")
 public class TeacherController {
-	
+
 	@Autowired
 	private TeacherService service;
-	
+
 	@GetMapping("/")
-	public ResponseEntity<List<Teacher>> getAllTeachers(){
+	public ResponseEntity<List<Teacher>> getAllTeachers() {
 		List<Teacher> teachers = service.getAllTeachers();
 		return new ResponseEntity<>(teachers, HttpStatus.OK);
 	}
-	
-	@PostMapping("/")    
-	public ResponseEntity<Void> addTeacher(@RequestBody Teacher teacher){
+
+	@PostMapping("/")
+	public ResponseEntity<Void> addTeacher(@RequestBody Teacher teacher) {
 		service.addTeacher(teacher);
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}

@@ -1,7 +1,5 @@
 package com.crudapplication.entity;
 
-
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,12 +18,12 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "director")
 public class Director {
-	
+
 	@Id
 	@Column(name = "director_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	@Column(name = "director_name")
 	private String name;
 

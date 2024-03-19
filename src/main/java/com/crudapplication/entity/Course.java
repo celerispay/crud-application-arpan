@@ -17,16 +17,12 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "course")
 public class Course {
-	
+
 	@Id
 	@Column(name = "course_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	@Column(name = "course_name")
 	private String name;
-	
-//	@OneToMany(mappedBy="course",
-//			cascade = CascadeType.ALL)
-//	private List<Student> student;
 }

@@ -17,46 +17,40 @@ import lombok.extern.log4j.Log4j2;
 @Data
 @Service
 @Log4j2
-public class StudentService{
-	
-	@Autowired
-	private	StudentRepo repository;
-	
+public class StudentService {
 
-	public List<Student> getAllStudents(){
+	@Autowired
+	private StudentRepo repository;
+
+	public List<Student> getAllStudents() {
 		log.info("Getting all students");
-		List<Student> student = (List<Student>)repository.findAll(); 
+		List<Student> student = (List<Student>) repository.findAll();
 		return student;
 	}
-	
-	
-	public Student getStudent(int id){
-		log.info("Getting student with id:{}",id);
+
+	public Student getStudent(int id) {
+		log.info("Getting student with id:{}", id);
 		return repository.findById(id).orElse(null);
 	}
-	
-	
+
 	public void addStudent(@Valid Student student) {
 		log.info("Adding students");
 		repository.save(student);
-		
-	}
-	
-	@Transactional
-	public void updateStudent(@Valid List<Student> student, int id){
-		log.info("updating students with given id:{}",id);
-		for(Student s:student) {
-		if(id == s.getId()) {
-			repository.save(s);
-		}
-		}
+
 	}
 
+	@Transactional
+	public void updateStudent(@Valid List<Student> student, int id) {
+		log.info("updating students with given id:{}", id);
+		for (Student s : student) {
+			if (id == s.getId()) {
+				repository.save(s);
+			}
+		}
+	}
 
 	public void deleteStudentByID(int id) {
 		repository.deleteById(id);
 	}
 
-
-	
 }

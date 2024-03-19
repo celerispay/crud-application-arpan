@@ -1,7 +1,5 @@
 package com.crudapplication.entity;
 
-
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,16 +24,16 @@ public class College {
 	@Id
 	@Column(name = "college_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int	id;
-	
+	private int id;
+
 	@Column(name = "college_name")
 	private String name;
-	
+
 	@Column(name = "college_place")
 	private String place;
-	
-	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="director_id")
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "director_id")
 	private Director director;
-	
+
 }

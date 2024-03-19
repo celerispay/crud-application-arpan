@@ -14,17 +14,17 @@ import lombok.Data;
 @Data
 @Service
 public class CollegeService {
-	
+
 	@Autowired
 	private CollegeRepo repository;
-	
-	public List<College> getAllCollege(){
-		List<College> college = (List<College>)repository.findAll(); 
+
+	public List<College> getAllCollege() {
+		List<College> college = (List<College>) repository.findAll();
 		return college;
 	}
+
 	public void addCollege(College college) {
 		repository.save(college);
 	}
-	
 
 }

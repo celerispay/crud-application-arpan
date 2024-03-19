@@ -21,26 +21,22 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "student")
 public class Student {
-    
-    @Id
-    @Column(name = "student_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
 
-    @NotBlank(message = "Name is required")
-    @Column(name = "student_name")
-    private String name;
+	@Id
+	@Column(name = "student_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 
-    @NotBlank(message = "Marks is required")
-    @Pattern(regexp = "\\d{1,3}", message = "Marks must be a number between 0 and 999")
-    @Column(name = "student_marks")
-    private String marks;
+	@NotBlank(message = "Name is required")
+	@Column(name = "student_name")
+	private String name;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "college_id")
-    private College college;
+	@NotBlank(message = "Marks is required")
+	@Pattern(regexp = "\\d{1,3}", message = "Marks must be a number between 0 and 999")
+	@Column(name = "student_marks")
+	private String marks;
 
-//    @ManyToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "course_id")
-//    private Course course;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "college_id")
+	private College college;
 }

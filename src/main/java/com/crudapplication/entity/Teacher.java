@@ -13,7 +13,6 @@ import javax.persistence.ManyToMany;
 
 import javax.persistence.Table;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,20 +23,16 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "teacher")
 public class Teacher {
-	
+
 	@Id
 	@Column(name = "teacher_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int teacherId;
-	
+
 	@Column(name = "teacher_name")
 	private String teacherName;
-	
-	
+
 	@ManyToMany
-	@JoinTable(
-	  name = "course_teacher", 
-	  joinColumns = @JoinColumn(name = "teacher_id"), 
-	  inverseJoinColumns = @JoinColumn(name = "course_id"))
+	@JoinTable(name = "course_teacher", joinColumns = @JoinColumn(name = "teacher_id"), inverseJoinColumns = @JoinColumn(name = "course_id"))
 	private Set<Course> course;
 }
