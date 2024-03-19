@@ -14,21 +14,27 @@ import org.springframework.web.bind.annotation.RestController;
 import com.crudapplication.entity.Course;
 import com.crudapplication.service.CourseService;
 
+import lombok.extern.log4j.Log4j2;
+
 @RestController
 @RequestMapping("/course")
+@Log4j2
 public class CourseController {
-	
+
 	@Autowired
 	private CourseService service;
-	
+
 	@GetMapping("/")
-	public ResponseEntity<List<Course>> getAllCourses(){
+	public ResponseEntity<List<Course>> getAllCourses() {
+		log.info("Retrieving list of courses");
 		List<Course> courses = service.getAllCourses();
+		log.info("Total courses retrieved:{}",courses.size());
 		return new ResponseEntity<>(courses, HttpStatus.OK);
 	}
-	
-	@PostMapping("/")    
-	public ResponseEntity<Void> addCourse(@RequestBody Course course){
+
+	@PostMapping("/")
+	public ResponseEntity<Void> addCourse(@RequestBody Course course) {
+		log.info("Adding course");
 		service.addCourse(course);
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}

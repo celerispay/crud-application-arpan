@@ -20,9 +20,23 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable().authorizeRequests().antMatchers("/public/**").hasRole("NORMAL").antMatchers("/signin")
-				.permitAll().antMatchers("/student/").hasRole("ADMIN").anyRequest().authenticated().and().formLogin()
-				.loginPage("/signin").loginProcessingUrl("/dologin").defaultSuccessUrl("/student/");
+		http.csrf().disable()
+		.authorizeRequests()
+		.antMatchers("/college/").hasRole("NORMAL")
+		.antMatchers("/signin").permitAll()
+		.antMatchers("/student/").hasRole("ADMIN")
+		.anyRequest()
+		.authenticated()
+		.and()
+		.formLogin().loginPage("/signin")
+		.loginProcessingUrl("/dologin")
+		.defaultSuccessUrl("/student/")
+		.defaultSuccessUrl("/college/")
+		.and()
+		.logout()
+		.logoutSuccessUrl("/signin")
+		.logoutUrl("/signout");
+		
 
 	}
 

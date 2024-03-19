@@ -14,8 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.crudapplication.entity.Teacher;
 import com.crudapplication.service.TeacherService;
 
+import lombok.extern.log4j.Log4j2;
+
 @RestController
 @RequestMapping("/teacher")
+@Log4j2
 public class TeacherController {
 
 	@Autowired
@@ -23,12 +26,15 @@ public class TeacherController {
 
 	@GetMapping("/")
 	public ResponseEntity<List<Teacher>> getAllTeachers() {
+		log.info("Retrieving list of teachers");
 		List<Teacher> teachers = service.getAllTeachers();
+		log.info("Total teachers retrieved:{}",teachers.size());
 		return new ResponseEntity<>(teachers, HttpStatus.OK);
 	}
 
 	@PostMapping("/")
 	public ResponseEntity<Void> addTeacher(@RequestBody Teacher teacher) {
+		log.info("Adding teacher");
 		service.addTeacher(teacher);
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
