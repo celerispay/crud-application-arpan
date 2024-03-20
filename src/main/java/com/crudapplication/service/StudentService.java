@@ -33,20 +33,20 @@ public class StudentService {
 		return repository.findById(id).orElse(null);
 	}
 
-	public void addStudent(@Valid Student student) {
+	public Student addStudent(@Valid Student student) {
 		log.info("Adding students");
-		repository.save(student);
+		return repository.save(student);
 
 	}
 
 	@Transactional
 	public void updateStudent(@Valid List<Student> student, int id) {
 		log.info("updating students with given id:{}", id);
-		for (Student s : student) {
-			if (id == s.getId()) {
-				repository.save(s);
-			}
-		}
+//		for (Student s : student) {
+//			if (id == s.getId()) {
+				repository.save(student);
+//			}
+//		}
 	}
 
 	public void deleteStudentByID(int id) {
