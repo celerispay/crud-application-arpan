@@ -10,6 +10,6 @@ import com.crudapplication.entity.Student;
 @Repository
 public interface StudentRepo extends CrudRepository<Student, Integer> {
 
-	void save(List<Student> students);
+	void save(List<? extends Student> students);
 
 }
