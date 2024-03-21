@@ -5,12 +5,22 @@ import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
+import org.springframework.batch.core.launch.JobExecutionNotRunningException;
+import org.springframework.batch.core.launch.JobOperator;
+import org.springframework.batch.core.launch.NoSuchJobExecutionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.crudapplication.entity.Student;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Configuration
 @EnableBatchProcessing
 public class BatchConfig {
@@ -29,11 +39,13 @@ public class BatchConfig {
 
     @Autowired
     private StudentItemWriter studentItemWriter;
+    
+
 
     @Bean
     public Step studentStep() {
         return stepBuilderFactory.get("studentStep")
-                .<Student, Student>chunk(10)
+                .<Student, ProcessedStudent>chunk(10)
                 .reader(studentItemReader)
                 .processor(studentItemProcessor)
                 .writer(studentItemWriter)
@@ -45,6 +57,7 @@ public class BatchConfig {
         return jobBuilderFactory.get("studentJob")
                 .start(studentStep())
                 .build();
+                
     }
 }
 
