@@ -10,8 +10,8 @@ com/crudapplication/controller/UserController.java
  com.crudapplication.controller.UserController
 com/crudapplication/repository/DirectorRepo.java
  com.crudapplication.repository.DirectorRepo
-com/crudapplication/controller/StudentController.java
- com.crudapplication.controller.StudentController
+com/crudapplication/CrudApplication.java
+ com.crudapplication.CrudApplication
 com/crudapplication/service/TeacherService.java
  com.crudapplication.service.TeacherService
 com/crudapplication/repository/TeacherRepo.java
@@ -63,5 +63,5 @@ com/crudapplication/controller/CollegeController.java
 com/crudapplication/entity/College.java
  com.crudapplication.entity.College
  com.crudapplication.entity.College$CollegeBuilder
-com/crudapplication/CrudApplication.java
- com.crudapplication.CrudApplication
+com/crudapplication/controller/StudentController.java
+ com.crudapplication.controller.StudentController

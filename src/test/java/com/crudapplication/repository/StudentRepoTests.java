@@ -23,108 +23,75 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import com.crudapplication.entity.College;
 import com.crudapplication.entity.Director;
 import com.crudapplication.entity.Student;
-import com.crudapplication.service.StudentService;
 
 
 @DataJpaTest
 @ExtendWith(MockitoExtension.class)
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class StudentRepoTests {
-	
+
 	@Autowired
 	private StudentRepo repository;
-	
+
 	private Student student;
-	
+
 	@BeforeEach
 	public void setupTestData() {
-		student=Student.builder()
-				.id(1)
-				.name("Arpan")
-				.marks("97")
-				.college(College.builder()
-						.id(1901)
-						.name("MVM")
-						.place("Lucknow")
-						.director(Director.builder()
-								.id(1)
-								.name("Mohan Lal").build()).build())
-				.build();
+		student = Student.builder().id(1).name("Arpan").marks("97").college(College.builder().id(1901).name("MVM")
+				.place("Lucknow").director(Director.builder().id(1).name("Mohan Lal").build()).build()).build();
 	}
-	
-	
+
 	@Test
-    public void testFindAll() {
-		Student studentOne=Student.builder()
-				.id(2)
-				.name("Sakshi")
-				.marks("97")
-				.college(College.builder()
-						.id(1901)
-						.name("MVM")
-						.place("Lucknow")
-						.director(Director.builder()
-								.id(1)
-								.name("Mohan Lal").build()).build())
+	public void testFindAll() {
+		Student studentOne = Student.builder().id(2).name("Sakshi").marks("97").college(College.builder().id(1901)
+				.name("MVM").place("Lucknow").director(Director.builder().id(1).name("Mohan Lal").build()).build())
 				.build();
-		
-		Student studentTwo=Student.builder()
-				.id(1)
-				.name("Rahul")
-				.marks("97")
-				.college(College.builder()
-						.id(1901)
-						.name("MVM")
-						.place("Lucknow")
-						.director(Director.builder()
-								.id(1)
-								.name("Mohan Lal").build()).build())
+
+		Student studentTwo = Student.builder().id(1).name("Rahul").marks("97").college(College.builder().id(1901)
+				.name("MVM").place("Lucknow").director(Director.builder().id(1).name("Mohan Lal").build()).build())
 				.build();
-		
+
 		repository.save(studentOne);
 		repository.save(studentTwo);
-		
-		List<Student> students=(List<Student>) repository.findAll();
-		assertEquals(students.isEmpty(),false);
+
+		List<Student> students = (List<Student>) repository.findAll();
+		assertEquals(students.isEmpty(), false);
 //		assertEquals(students.size(),6);
-    }
-	  
+	}
+
 	@Test
 	public void testGetStudent() {
 		repository.save(student);
-		Student students=repository.findById(student.getId()).get();
+		Student students = repository.findById(student.getId()).get();
 		assertNotNull(students);
 	}
-	
+
 	@Test
 	public void testAddStudent() {
-		Student addedStudent=repository.save(student);
+		Student addedStudent = repository.save(student);
 		assertNotNull(addedStudent);
 		assertEquals(true, addedStudent.getId() > 0);
 
 	}
-	 	@Test
-	    public void testUpdateStudent() {
-	        repository.save(student); 
-	        student.setName("Ramu"); 
-	        Student updatedStudent = repository.save(student);
-	        
-	        assertNotNull(updatedStudent);
-	        assertEquals("Ramu", updatedStudent.getName());
-	    }
-	    
-	    @Test
-	    public void testDeleteStudent() {
-	        repository.save(student); 
-	        
-	        repository.deleteById(student.getId());
-	        
-	        Optional<Student> deletedStudentOptional = repository.findById(student.getId());
-	        assertTrue(deletedStudentOptional.isEmpty());
-	    }
-	
-	
-	
-	
+
+	@Test
+	public void testUpdateStudent() {
+		repository.save(student);
+		student.setName("Ramu");
+		Student updatedStudent = repository.save(student);
+
+		assertNotNull(updatedStudent);
+		assertEquals("Ramu", updatedStudent.getName());
+	}
+
+	@Test
+	public void testDeleteStudent() {
+		repository.save(student);
+
+		repository.deleteById(student.getId());
+
+		Optional<Student> deletedStudentOptional = repository.findById(student.getId());
+		assertTrue(deletedStudentOptional.isEmpty());
+	}
 
 }

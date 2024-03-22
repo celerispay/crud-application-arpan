@@ -3,6 +3,7 @@ plugins {
 	id 'org.springframework.boot' version '2.6.3'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'eclipse'
+	id "org.sonarqube" version "3.4.0.2513"
 
 }
 
@@ -29,8 +30,6 @@ dependencies {
 	//implementation 'org.springframework.boot:spring-boot-devtools:2.6.6'
 implementation 'io.springfox:springfox-boot-starter:3.0.0'
 //implementation 'org.springframework.boot:spring-boot-starter-actuator:2.7.5'
-
-
 	
 	runtimeOnly 'mysql:mysql-connector-java'
 	compileOnly 'org.projectlombok:lombok'
