@@ -103,6 +103,25 @@ public class StudentRepoTests {
 		assertEquals(true, addedStudent.getId() > 0);
 
 	}
+	 	@Test
+	    public void testUpdateStudent() {
+	        repository.save(student); 
+	        student.setName("Ramu"); 
+	        Student updatedStudent = repository.save(student);
+	        
+	        assertNotNull(updatedStudent);
+	        assertEquals("Ramu", updatedStudent.getName());
+	    }
+	    
+	    @Test
+	    public void testDeleteStudent() {
+	        repository.save(student); 
+	        
+	        repository.deleteById(student.getId());
+	        
+	        Optional<Student> deletedStudentOptional = repository.findById(student.getId());
+	        assertTrue(deletedStudentOptional.isEmpty());
+	    }
 	
 	
 	

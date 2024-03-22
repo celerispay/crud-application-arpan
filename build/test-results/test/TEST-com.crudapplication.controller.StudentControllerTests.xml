@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.crudapplication.controller.StudentControllerTests" tests="5" skipped="0" failures="0" errors="0" timestamp="2024-03-22T07:24:36" hostname="ARPAN" time="0.259">
+<testsuite name="com.crudapplication.controller.StudentControllerTests" tests="5" skipped="0" failures="0" errors="0" timestamp="2024-03-22T07:51:10" hostname="ARPAN" time="0.082">
   <properties/>
-  <testcase name="testGetStudent()" classname="com.crudapplication.controller.StudentControllerTests" time="0.247"/>
+  <testcase name="testGetStudent()" classname="com.crudapplication.controller.StudentControllerTests" time="0.071"/>
   <testcase name="testUpdateStudent()" classname="com.crudapplication.controller.StudentControllerTests" time="0.005"/>
   <testcase name="testAddStudent()" classname="com.crudapplication.controller.StudentControllerTests" time="0.002"/>
   <testcase name="testGetAllStudents()" classname="com.crudapplication.controller.StudentControllerTests" time="0.002"/>
   <testcase name="testDeleteStudentByID()" classname="com.crudapplication.controller.StudentControllerTests" time="0.002"/>
-  <system-out><![CDATA[2024-03-22 12:54:37.070  INFO 15680 --- [    Test worker] c.c.controller.StudentController         : Retrieving students with id:1
-2024-03-22 12:54:37.085  INFO 15680 --- [    Test worker] c.c.controller.StudentController         : Updating student with id:1
-2024-03-22 12:54:37.091  INFO 15680 --- [    Test worker] c.c.controller.StudentController         : Adding student
-2024-03-22 12:54:37.091  INFO 15680 --- [    Test worker] c.c.controller.StudentController         : Added student with id:1
-2024-03-22 12:54:37.093  INFO 15680 --- [    Test worker] c.c.controller.StudentController         : Retrieving all students
-2024-03-22 12:54:37.094  INFO 15680 --- [    Test worker] c.c.controller.StudentController         : Total students retrieved: 2
-2024-03-22 12:54:37.095  INFO 15680 --- [    Test worker] c.c.controller.StudentController         : Deleting students with id:1
+  <system-out><![CDATA[2024-03-22 13:21:11.032  INFO 15460 --- [    Test worker] c.c.controller.StudentController         : Retrieving students with id:1
+2024-03-22 13:21:11.040  INFO 15460 --- [    Test worker] c.c.controller.StudentController         : Updating student with id:1
+2024-03-22 13:21:11.045  INFO 15460 --- [    Test worker] c.c.controller.StudentController         : Adding student
+2024-03-22 13:21:11.046  INFO 15460 --- [    Test worker] c.c.controller.StudentController         : Added student with id:1
+2024-03-22 13:21:11.047  INFO 15460 --- [    Test worker] c.c.controller.StudentController         : Retrieving all students
+2024-03-22 13:21:11.048  INFO 15460 --- [    Test worker] c.c.controller.StudentController         : Total students retrieved: 2
+2024-03-22 13:21:11.049  INFO 15460 --- [    Test worker] c.c.controller.StudentController         : Deleting students with id:1
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
