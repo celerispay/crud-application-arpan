@@ -48,10 +48,10 @@ class BatchConfigTest {
  
     }
 
-    @Test
-    void studentJob() {
-        Job job = batchConfig.studentJob();
-        verify(jobBuilderFactory).get("studentJob");
-     
-    }
+//    @Test
+//    void studentJob() {
+//        Job job = batchConfig.studentJob();
+//        verify(jobBuilderFactory).get("studentJob");
+//     
+//    }
 }

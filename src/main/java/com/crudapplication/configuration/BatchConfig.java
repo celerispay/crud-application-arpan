@@ -1,13 +1,9 @@
 package com.crudapplication.configuration;
 
-import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
-import org.springframework.batch.core.launch.JobExecutionNotRunningException;
-import org.springframework.batch.core.launch.JobOperator;
-import org.springframework.batch.core.launch.NoSuchJobExecutionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,40 +20,33 @@ import lombok.NoArgsConstructor;
 @Configuration
 @EnableBatchProcessing
 public class BatchConfig {
-	
+
 	@Autowired
-    private JobBuilderFactory jobBuilderFactory;
+	private JobBuilderFactory jobBuilderFactory;
 
-    @Autowired
-    private StepBuilderFactory stepBuilderFactory;
+	@Autowired
+	private StepBuilderFactory stepBuilderFactory;
 
-    @Autowired
-    private StudentItemReader studentItemReader;
+	@Autowired
+	private StudentItemReader studentItemReader;
 
-    @Autowired
-    private StudentItemProcessor studentItemProcessor;
+	@Autowired
+	private StudentItemProcessor studentItemProcessor;
 
-    @Autowired
-    private StudentItemWriter studentItemWriter;
-    
+	@Autowired
+	private StudentItemWriter studentItemWriter;
 
+	@Bean
+	public Step studentStep() {
+		return stepBuilderFactory.get("studentStep").<Student, ProcessedStudent>chunk(10).reader(studentItemReader)
+				.processor(studentItemProcessor).writer(studentItemWriter).build();
+	}
 
-    @Bean
-    public Step studentStep() {
-        return stepBuilderFactory.get("studentStep")
-                .<Student, ProcessedStudent>chunk(10)
-                .reader(studentItemReader)
-                .processor(studentItemProcessor)
-                .writer(studentItemWriter)
-                .build();
-    }
-
-    @Bean
-    public Job studentJob() {
-        return jobBuilderFactory.get("studentJob")
-                .start(studentStep())
-                .build();
-                
-    }
+//    @Bean
+//    public Job studentJob() {
+//        return jobBuilderFactory.get("studentJob")
+//                .start(studentStep())
+//                .build();
+//                
+//    }
 }
-

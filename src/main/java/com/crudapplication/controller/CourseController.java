@@ -28,7 +28,7 @@ public class CourseController {
 	public ResponseEntity<List<Course>> getAllCourses() {
 		log.info("Retrieving list of courses");
 		List<Course> courses = service.getAllCourses();
-		log.info("Total courses retrieved:{}",courses.size());
+		log.info("Total courses retrieved:{}", courses.size());
 		return new ResponseEntity<>(courses, HttpStatus.OK);
 	}
 

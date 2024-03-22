@@ -24,7 +24,7 @@ import lombok.extern.log4j.Log4j2;
 
 @Log4j2
 @RestController
-@RequestMapping("/student")
+@RequestMapping("/api/student")
 public class StudentController {
 
 	@Autowired
@@ -59,7 +59,7 @@ public class StudentController {
 		for (Student student : students) {
 			log.info("Adding student");
 			service.addStudent(student);
-			log.info("Added student with id:{}",student.getId());
+			log.info("Added student with id:{}", student.getId());
 		}
 
 		return new ResponseEntity<>(HttpStatus.CREATED);
@@ -73,7 +73,7 @@ public class StudentController {
 //			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 //		}
 
-		log.info("Updating student with id:{}",id);
+		log.info("Updating student with id:{}", id);
 		service.updateStudent(students, id);
 
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);

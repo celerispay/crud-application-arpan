@@ -17,7 +17,7 @@ import com.crudapplication.service.CollegeService;
 import lombok.extern.log4j.Log4j2;
 
 @RestController
-@RequestMapping("/college")
+@RequestMapping("/api/college")
 @Log4j2
 public class CollegeController {
 
@@ -28,7 +28,7 @@ public class CollegeController {
 	public ResponseEntity<List<College>> getAllCollege() {
 		log.info("Retrieving list of colleges");
 		List<College> colleges = service.getAllCollege();
-		log.info("Total colleges retrieved:{}",colleges.size());
+		log.info("Total colleges retrieved:{}", colleges.size());
 		return new ResponseEntity<>(colleges, HttpStatus.OK);
 	}
 

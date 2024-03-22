@@ -28,7 +28,7 @@ public class TeacherController {
 	public ResponseEntity<List<Teacher>> getAllTeachers() {
 		log.info("Retrieving list of teachers");
 		List<Teacher> teachers = service.getAllTeachers();
-		log.info("Total teachers retrieved:{}",teachers.size());
+		log.info("Total teachers retrieved:{}", teachers.size());
 		return new ResponseEntity<>(teachers, HttpStatus.OK);
 	}
 
