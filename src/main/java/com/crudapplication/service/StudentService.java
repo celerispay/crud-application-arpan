@@ -24,8 +24,7 @@ public class StudentService {
 
 	public List<Student> getAllStudents() {
 		log.info("Getting all students");
-		List<Student> student = (List<Student>) repository.findAll();
-		return student;
+		return (List<Student>) repository.findAll();
 	}
 
 	public Student getStudent(int id) {

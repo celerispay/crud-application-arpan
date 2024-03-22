@@ -22,7 +22,7 @@ import com.crudapplication.entity.Student;
 import com.crudapplication.repository.StudentRepo;
 
 @ExtendWith(MockitoExtension.class)
-public class StudentServiceTests {
+class StudentServiceTests {
 
 	@Mock
 	private StudentRepo repository;
@@ -31,7 +31,7 @@ public class StudentServiceTests {
 	private StudentService service;
 
 	@Test
-	public void testGetAllStudents() {
+	void testGetAllStudents() {
 		List<Student> students = new ArrayList<>();
 		Director director = new Director(1, "Mohan Lal");
 		College college = new College(1901, "MVM", "Lucknow", director);
@@ -46,7 +46,7 @@ public class StudentServiceTests {
 	}
 
 	@Test
-	public void testGetStudent() {
+	void testGetStudent() {
 		int id = 1;
 		Director director = new Director(1, "Mohan Lal");
 		College college = new College(1901, "MVM", "Lucknow", director);
@@ -60,7 +60,7 @@ public class StudentServiceTests {
 	}
 
 	@Test
-	public void testAddStudent() {
+	void testAddStudent() {
 		Director director = new Director(1, "Mohan Lal");
 		College college = new College(1901, "MVM", "Lucknow", director);
 		Student student = new Student(1, "Arpan", "93", college);
@@ -71,7 +71,7 @@ public class StudentServiceTests {
 	}
 
 	@Test
-	public void testUpdateStudent() {
+	void testUpdateStudent() {
 		int id = 1;
 		List<Student> students = new ArrayList<>();
 		Director director = new Director(1, "Mohan Lal");
@@ -83,7 +83,7 @@ public class StudentServiceTests {
 	}
 
 	@Test
-	public void testDeleteStudentByID() {
+	void testDeleteStudentByID() {
 		int id = 1;
 
 		service.deleteStudentByID(id);

@@ -15,12 +15,11 @@ import lombok.Data;
 public class TeacherService {
 
 	@Autowired
-	private TeacherRepo repository;;
+	private TeacherRepo repository;
 
 	public List<Teacher> getAllTeachers() {
-		List<Teacher> teachers = (List<Teacher>) repository.findAll();
+		return (List<Teacher>) repository.findAll();
 
-		return teachers;
 	}
 
 	public void addTeacher(Teacher teacher) {

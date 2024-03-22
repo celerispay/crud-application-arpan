@@ -28,7 +28,7 @@ import com.crudapplication.entity.Student;
 @DataJpaTest
 @ExtendWith(MockitoExtension.class)
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class StudentRepoTests {
+class StudentRepoTests {
 
 	@Autowired
 	private StudentRepo repository;
@@ -36,13 +36,13 @@ public class StudentRepoTests {
 	private Student student;
 
 	@BeforeEach
-	public void setupTestData() {
+	void setupTestData() {
 		student = Student.builder().id(1).name("Arpan").marks("97").college(College.builder().id(1901).name("MVM")
 				.place("Lucknow").director(Director.builder().id(1).name("Mohan Lal").build()).build()).build();
 	}
 
 	@Test
-	public void testFindAll() {
+	void testFindAll() {
 		Student studentOne = Student.builder().id(2).name("Sakshi").marks("97").college(College.builder().id(1901)
 				.name("MVM").place("Lucknow").director(Director.builder().id(1).name("Mohan Lal").build()).build())
 				.build();
@@ -55,19 +55,19 @@ public class StudentRepoTests {
 		repository.save(studentTwo);
 
 		List<Student> students = (List<Student>) repository.findAll();
-		assertEquals(students.isEmpty(), false);
+		assertEquals(false,students.isEmpty());
 //		assertEquals(students.size(),6);
 	}
 
 	@Test
-	public void testGetStudent() {
+	void testGetStudent() {
 		repository.save(student);
 		Student students = repository.findById(student.getId()).get();
 		assertNotNull(students);
 	}
 
 	@Test
-	public void testAddStudent() {
+	void testAddStudent() {
 		Student addedStudent = repository.save(student);
 		assertNotNull(addedStudent);
 		assertEquals(true, addedStudent.getId() > 0);
@@ -75,7 +75,7 @@ public class StudentRepoTests {
 	}
 
 	@Test
-	public void testUpdateStudent() {
+	void testUpdateStudent() {
 		repository.save(student);
 		student.setName("Ramu");
 		Student updatedStudent = repository.save(student);
@@ -85,7 +85,7 @@ public class StudentRepoTests {
 	}
 
 	@Test
-	public void testDeleteStudent() {
+	void testDeleteStudent() {
 		repository.save(student);
 
 		repository.deleteById(student.getId());

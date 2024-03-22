@@ -22,7 +22,7 @@ import com.crudapplication.entity.Student;
 import com.crudapplication.service.StudentService;
 
 @ExtendWith(MockitoExtension.class)
-public class StudentControllerTests {
+class StudentControllerTests {
 
 	@Mock
 	private StudentService service;
@@ -31,7 +31,7 @@ public class StudentControllerTests {
 	private StudentController controller;
 
 	@Test
-	public void testGetAllStudents() {
+	void testGetAllStudents() {
 		List<Student> students = new ArrayList<>();
 		Director director = new Director(1, "Mohan Lal");
 		College college = new College(1901, "MVM", "Lucknow", director);
@@ -46,7 +46,7 @@ public class StudentControllerTests {
 	}
 
 	@Test
-	public void testGetStudent() {
+	void testGetStudent() {
 		int id = 1;
 		Director director = new Director(1, "Mohan Lal");
 		College college = new College(1901, "MVM", "Lucknow", director);
@@ -61,7 +61,7 @@ public class StudentControllerTests {
 	}
 
 	@Test
-	public void testAddStudent() {
+	void testAddStudent() {
 		List<Student> students = new ArrayList<>();
 		Director director = new Director(1, "Mohan Lal");
 		College college = new College(1901, "MVM", "Lucknow", director);
@@ -73,7 +73,7 @@ public class StudentControllerTests {
 	}
 
 	@Test
-	public void testUpdateStudent() {
+	void testUpdateStudent() {
 		int id = 1;
 		List<Student> students = new ArrayList<>();
 		Director director = new Director(1, "Mohan Lal");
@@ -87,7 +87,7 @@ public class StudentControllerTests {
 	}
 
 	@Test
-	public void testDeleteStudentByID() {
+	void testDeleteStudentByID() {
 		int id = 1;
 
 		ResponseEntity<Void> responseEntity = controller.deleteStudentByID(id);

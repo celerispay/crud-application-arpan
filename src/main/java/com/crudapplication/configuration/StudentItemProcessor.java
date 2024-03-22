@@ -12,9 +12,8 @@ public class StudentItemProcessor implements ItemProcessor<Student, ProcessedStu
 
 	@Override
 	public ProcessedStudent process(Student student) throws Exception {
-		while (studentCount++ < 5) {
-			return new ProcessedStudent(studentCount, student);
-		}
-		return null;
+			return studentCount++<5?new ProcessedStudent(studentCount, student):null;
+		
 	}
 }
+

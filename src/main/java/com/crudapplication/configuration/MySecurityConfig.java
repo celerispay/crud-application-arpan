@@ -15,6 +15,8 @@ import com.crudapplication.service.CustomUserDetailService;
 @EnableWebSecurity
 public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 
+	
+	
 	@Autowired
 	private CustomUserDetailService customUserDetailService;
 

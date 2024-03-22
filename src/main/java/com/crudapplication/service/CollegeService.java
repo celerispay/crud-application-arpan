@@ -19,8 +19,7 @@ public class CollegeService {
 	private CollegeRepo repository;
 
 	public List<College> getAllCollege() {
-		List<College> college = (List<College>) repository.findAll();
-		return college;
+		return (List<College>) repository.findAll();
 	}
 
 	public void addCollege(College college) {

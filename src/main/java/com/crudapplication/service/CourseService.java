@@ -15,12 +15,11 @@ import lombok.Data;
 public class CourseService {
 
 	@Autowired
-	private CourseRepo repository;;
+	private CourseRepo repository;
 
 	public List<Course> getAllCourses() {
-		List<Course> courses = (List<Course>) repository.findAll();
+		return (List<Course>) repository.findAll();
 
-		return courses;
 	}
 
 	public void addCourse(Course course) {
