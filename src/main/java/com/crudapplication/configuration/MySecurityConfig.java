@@ -15,7 +15,7 @@ import com.crudapplication.service.CustomUserDetailService;
 @EnableWebSecurity
 public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 
-	
+	private static final String SIGNIN="/signin";
 	
 	@Autowired
 	private CustomUserDetailService customUserDetailService;
@@ -23,11 +23,11 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable().authorizeRequests().antMatchers("/swagger-ui/**", "/v3/api-docs").permitAll()
-				.antMatchers("/api/college/").hasRole("NORMAL").antMatchers("/signin").permitAll()
+				.antMatchers("/api/college/").hasRole("NORMAL").antMatchers(SIGNIN).permitAll()
 				.antMatchers("/api/student/").hasRole("ADMIN").anyRequest().authenticated().and().formLogin()
-				.loginPage("/signin").loginProcessingUrl("/dologin").defaultSuccessUrl("/api/student/")
+				.loginPage(SIGNIN).loginProcessingUrl("/dologin").defaultSuccessUrl("/api/student/")
 //		.defaultSuccessUrl("/college/")
-				.and().logout().logoutSuccessUrl("/signin").logoutUrl("/signout");
+				.and().logout().logoutSuccessUrl(SIGNIN).logoutUrl("/signout");
 
 	}
 

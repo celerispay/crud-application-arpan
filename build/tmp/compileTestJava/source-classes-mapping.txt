@@ -1,8 +1,8 @@
-com/crudapplication/service/StudentServiceTests.java
- com.crudapplication.service.StudentServiceTests
 com/crudapplication/controller/StudentControllerTests.java
  com.crudapplication.controller.StudentControllerTests
 com/crudapplication/repository/StudentRepoTests.java
  com.crudapplication.repository.StudentRepoTests
+com/crudapplication/service/StudentServiceTests.java
+ com.crudapplication.service.StudentServiceTests
 com/crudapplication/CrudApplicationTests.java
  com.crudapplication.CrudApplicationTests

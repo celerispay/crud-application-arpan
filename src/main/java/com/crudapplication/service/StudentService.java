@@ -41,11 +41,9 @@ public class StudentService {
 	@Transactional
 	public void updateStudent(@Valid List<Student> student, int id) {
 		log.info("updating students with given id:{}", id);
-//		for (Student s : student) {
-//			if (id == s.getId()) {
+
 				repository.save(student);
-//			}
-//		}
+
 	}
 
 	public void deleteStudentByID(int id) {

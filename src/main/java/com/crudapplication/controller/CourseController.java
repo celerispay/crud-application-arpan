@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.crudapplication.entity.Course;
+import com.crudapplication.entity.CourseDTO;
 import com.crudapplication.service.CourseService;
 
 import lombok.extern.log4j.Log4j2;
@@ -33,9 +34,17 @@ public class CourseController {
 	}
 
 	@PostMapping("/")
-	public ResponseEntity<Void> addCourse(@RequestBody Course course) {
+	public ResponseEntity<Void> addCourse(@RequestBody CourseDTO courseDTO) {
 		log.info("Adding course");
+		Course course=convertDTOtoCourse(courseDTO);
 		service.addCourse(course);
 		return new ResponseEntity<>(HttpStatus.CREATED);
+	}
+
+	private Course convertDTOtoCourse(CourseDTO courseDTO) {
+		Course course=new Course();
+		course.setId(courseDTO.getId());
+		course.setName(courseDTO.getName());
+		return course;
 	}
 }

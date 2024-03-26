@@ -51,10 +51,6 @@ public class StudentController {
 
 	@PostMapping("/")
 	public ResponseEntity<List<Student>> addStudent(@Valid @RequestBody List<Student> students, BindingResult result) {
-//		if (result.hasErrors()) {
-//			log.error("Error in request body while adding students: {}", result.getAllErrors());
-//			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-//		}
 
 		for (Student student : students) {
 			log.info("Adding student");
@@ -68,10 +64,6 @@ public class StudentController {
 	@PutMapping("/{id}")
 	public ResponseEntity<Void> updateStudent(@Valid @RequestBody List<Student> students, @PathVariable int id,
 			BindingResult result) {
-//		if (result.hasErrors()) {
-//			log.error("Error in request body while updating students: {}", result.getAllErrors());
-//			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-//		}
 
 		log.info("Updating student with id:{}", id);
 		service.updateStudent(students, id);

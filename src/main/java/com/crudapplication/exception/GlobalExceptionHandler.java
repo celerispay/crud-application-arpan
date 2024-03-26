@@ -4,6 +4,7 @@ import javax.validation.ConstraintViolationException;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -15,14 +16,19 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler(Exception.class)
 	@ResponseBody
 	public ResponseEntity<Object> handleGenericException(Exception ex) {
-		ex.printStackTrace();
 		return new ResponseEntity<>("An unexpected error occurred", HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	@ResponseBody
 	public ResponseEntity<Object> handleValidationExceptions(MethodArgumentNotValidException ex) {
-		String errorMessage = ex.getBindingResult().getFieldError().getDefaultMessage();
+		
+		String errorMessage="Validation Failed";
+		FieldError fieldError=ex.getBindingResult().getFieldError();
+		if(fieldError!=null) {
+			errorMessage =fieldError.getDefaultMessage();
+		}
+		
 		return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
 	}
 
