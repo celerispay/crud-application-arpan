@@ -18,7 +18,7 @@ public class UserController {
 	@GetMapping("/signout")
 	public String signOut() {
 		log.info("Logged out!!!");
-		return "logout successfull";
+		return "logout";
 	}
 
 
