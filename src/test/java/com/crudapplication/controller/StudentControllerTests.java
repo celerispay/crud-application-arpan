@@ -90,7 +90,7 @@ class StudentControllerTests {
 	void testDeleteStudentByID() {
 		int id = 1;
 
-		ResponseEntity<Void> responseEntity = controller.deleteStudentByID(id);
+		ResponseEntity<Student> responseEntity = controller.deleteStudentByID(id);
 
 		assertEquals(HttpStatus.NO_CONTENT, responseEntity.getStatusCode());
 		verify(service, times(1)).deleteStudentByID(id);

@@ -1,5 +1,6 @@
 package com.crudapplication.entity;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -35,4 +36,25 @@ public class Teacher {
 	@ManyToMany
 	@JoinTable(name = "course_teacher", joinColumns = @JoinColumn(name = "teacher_id"), inverseJoinColumns = @JoinColumn(name = "course_id"))
 	private Set<Course> course;
-}
+	
+	
+	 public Teacher(TeacherDTO teacherDTO) {
+		 this.teacherId=teacherDTO.getId();
+	       this.teacherName = teacherDTO.getName();
+	       
+	        this.course = mapCourseDTOsToCourses(teacherDTO.getCourse());
+	    }
+
+	   
+	    private Set<Course> mapCourseDTOsToCourses(Set<CourseDTO> courseDTOs) {
+	        Set<Course> courses = new HashSet<>();
+	        for (CourseDTO courseDTO : courseDTOs) {
+	            Course course = new Course();
+	            course.setId(courseDTO.getId());
+	            course.setName(courseDTO.getName());
+	            courses.add(course);
+	        }
+	        return courses;
+	    }
+	}
+

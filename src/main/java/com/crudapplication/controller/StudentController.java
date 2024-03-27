@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.crudapplication.entity.Student;
+import com.crudapplication.repository.StudentRepo;
 import com.crudapplication.service.StudentService;
 
 import lombok.extern.log4j.Log4j2;
@@ -29,6 +30,9 @@ public class StudentController {
 
 	@Autowired
 	private StudentService service;
+
+	@Autowired
+	StudentRepo repo;
 
 	@GetMapping("/")
 	public ResponseEntity<List<Student>> getAllStudents() {
@@ -58,7 +62,7 @@ public class StudentController {
 			log.info("Added student with id:{}", student.getId());
 		}
 
-		return new ResponseEntity<>(HttpStatus.CREATED);
+		return new ResponseEntity<>(students, HttpStatus.CREATED);
 	}
 
 	@PutMapping("/{id}")
@@ -68,13 +72,17 @@ public class StudentController {
 		log.info("Updating student with id:{}", id);
 		service.updateStudent(students, id);
 
-		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		return new ResponseEntity<>(HttpStatus.ACCEPTED);
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> deleteStudentByID(@PathVariable int id) {
+	public ResponseEntity<Student> deleteStudentByID(@PathVariable int id) {
 		log.info("Deleting students with id:{}", id);
-		service.deleteStudentByID(id);
-		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		Student deletedStudent = service.deleteStudentByID(id);
+		if (deletedStudent != null) {
+			return ResponseEntity.ok(deletedStudent);
+		} else {
+			return ResponseEntity.notFound().build();
+		}
 	}
 }

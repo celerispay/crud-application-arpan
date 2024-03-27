@@ -1,7 +1,9 @@
 package com.crudapplication.service;
 
 import java.util.List;
+import java.util.Optional;
 
+import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
@@ -26,6 +28,7 @@ public class StudentService {
 		log.info("Getting all students");
 		return (List<Student>) repository.findAll();
 	}
+	
 
 	public Student getStudent(int id) {
 		log.info("Getting student with id:{}", id);
@@ -39,15 +42,38 @@ public class StudentService {
 	}
 
 	@Transactional
-	public void updateStudent(@Valid List<Student> student, int id) {
+	public void updateStudent(@Valid List<Student> students, int id) {
 		log.info("updating students with given id:{}", id);
-
-				repository.save(student);
+		Optional<Student> optionalStudent = repository.findById(id);
+		
+		if(optionalStudent.isPresent()) {
+			Student existingStudent=optionalStudent.get();
+			Student updatedStudentData=students.get(0);
+			
+			 existingStudent.setName(updatedStudentData.getName());
+	            existingStudent.setMarks(updatedStudentData.getMarks());
+	            repository.save(existingStudent);
+		}
+		else {
+			throw new EntityNotFoundException("Student with ID " + id + " not found");
+		}
+		
 
 	}
 
-	public void deleteStudentByID(int id) {
-		repository.deleteById(id);
+	public Student deleteStudentByID(int id) {
+		Optional<Student> optionalStudent=repository.findById(id);
+		
+		if(optionalStudent.isPresent()) {
+			log.info("Deleting students");
+			Student student=optionalStudent.get();
+			repository.deleteById(id);
+			return student;
+		}
+		else {
+			return null;
+		}
+		
 	}
 
 }

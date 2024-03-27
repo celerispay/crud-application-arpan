@@ -25,4 +25,5 @@ public class TeacherService {
 	public void addTeacher(Teacher teacher) {
 		repository.save(teacher);
 	}
+	
 }

@@ -5,13 +5,14 @@ import javax.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @ControllerAdvice
-public class GlobalExceptionHandler {
+public class GlobalExceptionHandler{
 
 	@ExceptionHandler(Exception.class)
 	@ResponseBody
@@ -36,5 +37,13 @@ public class GlobalExceptionHandler {
 	public ResponseEntity<Object> handleConstraintViolationException(ConstraintViolationException ex) {
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Validation failed: " + ex.getMessage());
 	}
+	
+	
+	@ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+	public ResponseEntity<Object> handleMethodNotAllowed(HttpRequestMethodNotSupportedException ex){
+		
+		return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).body("Method Not Allowed:" + ex.getMessage());
+	}
 
 }
+

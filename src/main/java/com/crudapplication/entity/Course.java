@@ -25,4 +25,9 @@ public class Course {
 
 	@Column(name = "course_name")
 	private String name;
+
+	public Course(CourseDTO courseDTO) {
+		this.id = courseDTO.getId();
+		this.name = courseDTO.getName();
+	}
 }

@@ -41,4 +41,12 @@ public class Student {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "college_id")
 	private College college;
+	
+	
+	public Student(StudentDTO studentDTO,CollegeDTO collegeDTO,DirectorDTO directorDTO) {
+		this.id=studentDTO.getId();
+		this.name=studentDTO.getName();
+		this.marks=studentDTO.getMarks();
+		this.college=new College(collegeDTO.getId(),collegeDTO.getName(),collegeDTO.getPlace(),new Director(directorDTO.getId(),directorDTO.getName()));
+	}
 }

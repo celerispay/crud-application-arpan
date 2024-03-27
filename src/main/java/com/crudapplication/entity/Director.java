@@ -29,4 +29,9 @@ public class Director {
 	@Column(name = "director_name")
 	private String name;
 
+	public Director(DirectorDTO directorDTO) {
+		this.id = directorDTO.getId();
+		this.name = directorDTO.getName();
+	}
+
 }

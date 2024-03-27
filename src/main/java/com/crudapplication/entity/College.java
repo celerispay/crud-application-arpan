@@ -38,4 +38,10 @@ public class College {
 	@JoinColumn(name = "director_id")
 	private Director director;
 
+	public College(CollegeDTO collegeDTO, DirectorDTO directorDTO) {
+		this.id = collegeDTO.getId();
+		this.name = collegeDTO.getName();
+		this.place = collegeDTO.getPlace();
+		this.director = new Director(collegeDTO.getDirector().getId(), collegeDTO.getDirector().getName());
+	}
 }

@@ -11,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.crudapplication.service.CustomUserDetailService;
 
+
 @Configuration
 @EnableWebSecurity
 public class MySecurityConfig extends WebSecurityConfigurerAdapter {
@@ -23,8 +24,8 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable().authorizeRequests().antMatchers("/swagger-ui/**", "/v3/api-docs").permitAll()
-				.antMatchers("/api/college/").hasRole("NORMAL").antMatchers(SIGNIN).permitAll()
-				.antMatchers("/api/student/").hasRole("ADMIN").anyRequest().authenticated().and().formLogin()
+				.antMatchers("/api/college/**").hasRole("NORMAL").antMatchers(SIGNIN).permitAll()
+				.antMatchers("/api/student/**").hasRole("ADMIN").anyRequest().authenticated().and().formLogin()
 				.loginPage(SIGNIN).loginProcessingUrl("/dologin").defaultSuccessUrl("/api/student/")
 //		.defaultSuccessUrl("/college/")
 				.and().logout().logoutSuccessUrl(SIGNIN).logoutUrl("/signout");
